@@ -1,0 +1,12 @@
+opencv-python
+numpy
+mediapipe
+fastapi
+uvicorn
+pyyaml
+pytest
+
+# Raspberry Pi note:
+# If opencv-python is difficult to install on Raspberry Pi OS, try the OS package
+# python3-opencv or a headless OpenCV package depending on the deployment setup.
+

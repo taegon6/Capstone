@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+
+# MATLAB
+*.asv
+*.m~
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

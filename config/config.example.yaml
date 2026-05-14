@@ -1,0 +1,16 @@
+csi:
+  serial_port: "COM3"
+  baudrate: 921600
+  sample_rate_hz: 50
+  auto_threshold: true
+
+pose:
+  camera_index: 0
+  min_valid_keypoints: 8
+  min_avg_confidence: 0.5
+  mock_mode: true
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+
