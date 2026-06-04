@@ -1,0 +1,20 @@
+{
+  "label": "moving_person_phone",
+  "port": "COM11",
+  "baud": 921600,
+  "seconds": 30.0,
+  "started_at": "2026-06-04T10:28:49",
+  "finished_at": "2026-06-04T10:29:19",
+  "first_csi_at": "2026-06-04T10:28:51",
+  "log_path": "data\\csi_logs\\20260604_102849_moving_person_phone_COM11.log",
+  "csi_count": 579,
+  "csi_len_histogram": {
+    "376": 10,
+    "128": 562,
+    "256": 1,
+    "384": 6
+  },
+  "status_count": 11,
+  "other_count": 9,
+  "valid_for_analysis": true
+}

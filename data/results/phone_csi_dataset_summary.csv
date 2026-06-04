@@ -1,0 +1,4 @@
+label,file,packets,subcarriers,mean_abs_z,mean_variance,mean_energy,mean_diff_energy,moving_windows,total_windows
+empty_phone,C:\Users\User\Documents\New project\data\csi_logs\20260604_102541_empty_phone_COM11.log,358,188,0.353643017689992,0.983254811844777,0.984156761451336,0.301150072797521,2,12
+static_person_phone,C:\Users\User\Documents\New project\data\csi_logs\20260604_102703_static_person_phone_COM11.log,604,192,0.677801433456845,0.949946467062979,0.967889810087766,0.0707514736877276,3,22
+moving_person_phone,C:\Users\User\Documents\New project\data\csi_logs\20260604_102849_moving_person_phone_COM11.log,576,192,0.68813163950485,0.851720326438988,0.856020001757494,0.169049218113283,7,21
