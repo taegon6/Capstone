@@ -64,12 +64,17 @@ PPT 스타일:
   - 외부 공개 CSI 데이터에서도 파이프라인이 동작함을 보여주는 보조 검증으로 표현한다.
 
 사용할 이미지 자료:
-- `data/results/phone_csi_dataset_comparison.png`
-- `data/results/phone_motion_ai_confusion.png`
-- `data/results/phone_realtime_model_confusion.png`
-- `data/results/mock_emergency_fall_ai_confusion.png`
-- `data/results/public_homehar_summary.png`
-- `data/results/public_homehar_activity_ai_confusion.png`
+- `data/ppt_assets/01_system_architecture_ppt.png`
+- `data/ppt_assets/02_phone_csi_summary_ppt.png`
+- `data/ppt_assets/03_phone_motion_feature_scatter_ppt.png`
+- `data/ppt_assets/04_emergency_feature_scatter_ppt.png`
+- `data/ppt_assets/05_realtime_dashboard_preview_ppt.png`
+- `data/ppt_assets/06_phone_csi_dataset_comparison.png`
+- `data/ppt_assets/07_phone_motion_ai_confusion.png`
+- `data/ppt_assets/08_phone_realtime_model_confusion.png`
+- `data/ppt_assets/09_mock_emergency_fall_ai_confusion.png`
+- `data/ppt_assets/10_public_homehar_activity_ai_confusion.png`
+- `data/ppt_assets/11_public_homehar_summary.png`
 
 슬라이드 구성:
 
@@ -97,7 +102,7 @@ PPT 스타일:
    - feature extraction
    - presence/motion/activity/emergency candidate decision
    - dashboard
-   - 이 슬라이드는 블록 다이어그램으로 표현한다.
+   - `01_system_architecture_ppt.png`를 넣는다.
 
 5. MATLAB CSI 처리 파이프라인
    - raw CSI integer vector
@@ -106,25 +111,26 @@ PPT 스타일:
    - unwrap/smoothing/z-score
    - sliding window feature
    - threshold + classical ML
-   - `phone_csi_dataset_comparison.png`를 넣는다.
+   - `02_phone_csi_summary_ppt.png` 또는 `06_phone_csi_dataset_comparison.png`를 넣는다.
 
 6. 실제 수집 데이터 및 동작 분류 결과
    - empty/static_person/moving_person 데이터 수집 결과
    - phone motion AI accuracy 0.6842
    - realtime model accuracy 0.7857
-   - `phone_motion_ai_confusion.png` 또는 `phone_realtime_model_confusion.png`를 넣는다.
+   - `03_phone_motion_feature_scatter_ppt.png`, `07_phone_motion_ai_confusion.png`, `08_phone_realtime_model_confusion.png` 중 1~2개를 넣는다.
    - 작은 데이터셋 기반 데모 결과임을 명확히 표시한다.
 
 7. 환자 이상 이벤트 데모
    - 정상 움직임과 낙상 의심 이벤트 후보를 CSI feature 패턴으로 구분하는 mock demo
    - 급격한 변화 + 이후 정적 상태를 fall-like candidate로 본다.
-   - `mock_emergency_fall_ai_confusion.png`를 넣는다.
+   - `04_emergency_feature_scatter_ppt.png`와 `09_mock_emergency_fall_ai_confusion.png`를 넣는다.
    - "임상 검증이 아닌 발표용 mock CSI 검증"이라고 표기한다.
 
 8. 데모 시나리오와 결론
    - 1단계: ESP32 연결 및 CSI log 확인
    - 2단계: MATLAB offline 분석으로 presence/motion/activity 확인
    - 3단계: realtime dashboard로 상태 표시
+   - `05_realtime_dashboard_preview_ppt.png`를 넣는다.
    - 기대효과: 저비용, 비영상, 비접촉 모니터링 가능성
    - 한계: 데이터셋 작음, 환경 변화 민감, 낙상/환자 상태의 실제 검증 필요
    - 향후 연구: 실제 환자 시나리오 데이터 수집, threshold 보정, 모델 일반화, Raspberry Pi edge server
@@ -165,4 +171,3 @@ PPT 스타일:
 슬라이드는 문제 정의, Wi-Fi CSI 원리, 시스템 구조, MATLAB 처리 파이프라인, 실제 수집 결과, 환자 이상 이벤트 데모, 실시간 대시보드, 한계 및 향후 연구 순서로 구성해.  
 
 각 슬라이드마다 제목, 짧은 bullet, 넣을 그림 안내, speaker notes를 작성해줘. 발표 톤은 공학 캡스톤 발표답게 현실적이고 과장 없는 기술 발표로 만들어줘.
-

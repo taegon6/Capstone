@@ -40,12 +40,30 @@ ESP32-S3에서 수집한 Wi-Fi CSI를 MATLAB에서 전처리하고 feature를 �
 
 | 파일 | 용도 |
 |---|---|
-| `data/results/phone_csi_dataset_comparison.png` | 실제 수집 CSI 조건별 비교 |
-| `data/results/phone_motion_ai_confusion.png` | phone motion AI 분류 결과 |
-| `data/results/phone_realtime_model_confusion.png` | 실시간 모델 학습 결과 |
-| `data/results/mock_emergency_fall_ai_confusion.png` | 낙상 의심 이벤트 mock 분류 결과 |
-| `data/results/public_homehar_summary.png` | 공개 CSI 데이터 summary |
-| `data/results/public_homehar_activity_ai_confusion.png` | 공개 CSI 데이터 activity classification 결과 |
+| `data/ppt_assets/01_system_architecture_ppt.png` | PPT용 시스템 구조도 |
+| `data/ppt_assets/02_phone_csi_summary_ppt.png` | 실제 phone CSI 수집 요약 |
+| `data/ppt_assets/03_phone_motion_feature_scatter_ppt.png` | phone CSI activity feature space |
+| `data/ppt_assets/04_emergency_feature_scatter_ppt.png` | mock emergency event feature space |
+| `data/ppt_assets/05_realtime_dashboard_preview_ppt.png` | 실시간 대시보드 발표용 preview |
+| `data/ppt_assets/06_phone_csi_dataset_comparison.png` | 실제 수집 CSI 조건별 비교 |
+| `data/ppt_assets/07_phone_motion_ai_confusion.png` | phone motion AI 분류 결과 |
+| `data/ppt_assets/08_phone_realtime_model_confusion.png` | 실시간 모델 학습 결과 |
+| `data/ppt_assets/09_mock_emergency_fall_ai_confusion.png` | 낙상 의심 이벤트 mock 분류 결과 |
+| `data/ppt_assets/10_public_homehar_activity_ai_confusion.png` | 공개 CSI 데이터 activity classification 결과 |
+| `data/ppt_assets/11_public_homehar_summary.png` | 공개 CSI 데이터 summary |
+
+## MATLAB에서 PPT 이미지 다시 만들기
+
+```matlab
+addpath(genpath('matlab'));
+run('matlab/examples/export_ppt_assets.m');
+```
+
+생성 위치:
+
+```text
+data/ppt_assets/
+```
 
 ## 슬라이드별 추천 자료
 
@@ -70,6 +88,7 @@ ESP32-S3에서 수집한 Wi-Fi CSI를 MATLAB에서 전처리하고 feature를 �
    - feature extraction
    - classifier / rule
    - dashboard
+   - 추천 이미지: `01_system_architecture_ppt.png`
 
 5. MATLAB pipeline
    - parse CSI line
@@ -78,18 +97,18 @@ ESP32-S3에서 수집한 Wi-Fi CSI를 MATLAB에서 전처리하고 feature를 �
    - unwrap, smoothing, z-score
    - sliding window features
    - threshold / fitcecoc classifier
-   - 추천 이미지: `phone_csi_dataset_comparison.png`
+   - 추천 이미지: `02_phone_csi_summary_ppt.png`, `06_phone_csi_dataset_comparison.png`
 
 6. 실제 데이터 결과
    - empty/static/moving 조건 비교
    - phone motion AI accuracy 0.6842
    - realtime model accuracy 0.7857
-   - 추천 이미지: `phone_motion_ai_confusion.png`, `phone_realtime_model_confusion.png`
+   - 추천 이미지: `03_phone_motion_feature_scatter_ppt.png`, `07_phone_motion_ai_confusion.png`, `08_phone_realtime_model_confusion.png`
 
 7. 환자 이상 이벤트 mock demo
    - 정상 활동과 fall-like event를 mock CSI로 합성
    - 급격한 변화 후 정적 상태를 낙상 의심 후보로 판단
-   - 추천 이미지: `mock_emergency_fall_ai_confusion.png`
+   - 추천 이미지: `04_emergency_feature_scatter_ppt.png`, `09_mock_emergency_fall_ai_confusion.png`
 
 8. 결론 및 한계
    - 구현 완료: ESP32 CSI 수집, MATLAB 분석, real-time dashboard
@@ -127,4 +146,3 @@ ESP32-S3에서 수집한 Wi-Fi CSI를 MATLAB에서 전처리하고 feature를 �
 
 - 프로젝트 GitHub: `https://github.com/taegon6/Capstone`
 - 공개 CSI 데이터 보조 검증: `https://huggingface.co/datasets/gadgadgad/HomeHAR`
-
