@@ -76,6 +76,12 @@ Run realtime monitor:
 run("matlab/examples/run_realtime_csi_activity_demo.m");
 ```
 
+Presentation dashboard:
+
+```matlab
+run("matlab/examples/run_realtime_csi_dashboard_demo.m");
+```
+
 Requirements:
 - ESP32-S3 must appear as a COM port on this laptop.
 - Update the `port` variable in `run_realtime_csi_activity_demo.m` when the COM number changes.

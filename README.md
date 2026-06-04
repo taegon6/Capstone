@@ -102,6 +102,7 @@ run("matlab/examples/run_phone_motion_ai_demo.m");
 ```matlab
 run("matlab/examples/run_train_phone_realtime_model.m");
 run("matlab/examples/run_realtime_csi_activity_demo.m");
+run("matlab/examples/run_realtime_csi_dashboard_demo.m");
 ```
 
 ESP32가 현재 PC에서 `COM11` 같은 Serial 포트로 인식되어 있어야 합니다. 포트가 다르면 `run_realtime_csi_activity_demo.m`의 `port` 값을 수정합니다.
