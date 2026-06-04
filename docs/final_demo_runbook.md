@@ -81,6 +81,16 @@ Requirements:
 - Update the `port` variable in `run_realtime_csi_activity_demo.m` when the COM number changes.
 - Keep the same rough ESP32/person layout used when collecting the training logs.
 
+## 8. Emergency/Fall Concept Demo
+
+```matlab
+run("matlab/examples/run_emergency_fall_ai_demo.m");
+```
+
+This groups normal actions into `normal` and treats only fall-like mock CSI windows as `emergency_fall`.
+
+Use this as a CSI-only patient-monitoring concept demo, not as a clinically validated fall detector. The emergency demo does not use camera input.
+
 Explain this as external validation only. Do not claim the public dataset was collected with this project's ESP32-S3 hardware.
 
 ## 4. Camera Pose Demo

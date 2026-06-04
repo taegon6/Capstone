@@ -1,0 +1,2 @@
+method,accuracy,numWindows,numClasses,note
+fitcecoc,1,200,2,"Mock CSI only: fall emergency demo, not clinical validation"

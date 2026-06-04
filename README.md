@@ -106,6 +106,17 @@ run("matlab/examples/run_realtime_csi_activity_demo.m");
 
 ESP32가 현재 PC에서 `COM11` 같은 Serial 포트로 인식되어 있어야 합니다. 포트가 다르면 `run_realtime_csi_activity_demo.m`의 `port` 값을 수정합니다.
 
+## 환자 모니터링/위급상황 데모
+정상 동작은 `normal`로 묶고, 쓰러짐 후보만 `emergency_fall`로 분류하는 MATLAB mock CSI 데모를 제공합니다.
+
+```matlab
+run("matlab/examples/run_emergency_fall_ai_demo.m");
+```
+
+이 데모는 실제 임상용 낙상 감지가 아니라, 환자 모니터링 시스템으로 확장할 때 사용할 수 있는 CSI-only 알고리즘 구조 예시입니다. 정상 동작은 모두 `normal`로 묶고, CSI amplitude window에서 순간적인 큰 변화와 이후 정지 패턴이 나타나는 mock fall만 `emergency_fall`로 분류합니다.
+
+현재 환자 모니터링 방향은 카메라를 사용하지 않고 CSI만 사용합니다. 따라서 발표에서는 “카메라 없이 비접촉 Wi-Fi CSI 기반 위급상황 후보 감지”로 설명합니다.
+
 ## Python 카메라/Mock 데모 실행법
 Windows PowerShell 예시:
 
