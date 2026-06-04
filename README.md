@@ -97,6 +97,15 @@ run("matlab/examples/run_phone_motion_ai_demo.m");
 
 두 결과는 작은 데모 데이터 기준이므로 최종 성능 지표가 아니라 MATLAB AI 분류 파이프라인 검증 결과로 설명합니다.
 
+실시간 MATLAB CSI 분류:
+
+```matlab
+run("matlab/examples/run_train_phone_realtime_model.m");
+run("matlab/examples/run_realtime_csi_activity_demo.m");
+```
+
+ESP32가 현재 PC에서 `COM11` 같은 Serial 포트로 인식되어 있어야 합니다. 포트가 다르면 `run_realtime_csi_activity_demo.m`의 `port` 값을 수정합니다.
+
 ## Python 카메라/Mock 데모 실행법
 Windows PowerShell 예시:
 

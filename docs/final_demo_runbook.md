@@ -63,6 +63,24 @@ Current verified results:
 
 These are small demo-set results. Present them as proof that the MATLAB AI pipeline runs end-to-end, not as final benchmark accuracy.
 
+## 7. Realtime MATLAB CSI Classification
+Train the live model from collected phone-connected logs:
+
+```matlab
+run("matlab/examples/run_train_phone_realtime_model.m");
+```
+
+Run realtime monitor:
+
+```matlab
+run("matlab/examples/run_realtime_csi_activity_demo.m");
+```
+
+Requirements:
+- ESP32-S3 must appear as a COM port on this laptop.
+- Update the `port` variable in `run_realtime_csi_activity_demo.m` when the COM number changes.
+- Keep the same rough ESP32/person layout used when collecting the training logs.
+
 Explain this as external validation only. Do not claim the public dataset was collected with this project's ESP32-S3 hardware.
 
 ## 4. Camera Pose Demo
