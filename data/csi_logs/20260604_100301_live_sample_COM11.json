@@ -1,0 +1,14 @@
+{
+  "label": "live_sample",
+  "port": "COM11",
+  "baud": 921600,
+  "seconds": 10.0,
+  "started_at": "2026-06-04T10:03:01",
+  "finished_at": "2026-06-04T10:03:11",
+  "first_csi_at": "2026-06-04T10:03:02",
+  "log_path": "data\\csi_logs\\20260604_100301_live_sample_COM11.log",
+  "csi_count": 105,
+  "status_count": 5,
+  "other_count": 6,
+  "valid_for_analysis": true
+}

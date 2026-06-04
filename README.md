@@ -42,6 +42,46 @@ results = runtests("matlab/tests");
 table(results)
 ```
 
+## 실제 ESP32 CSI 로그 수집
+ESP32-S3에 `firmware/esp32_csi_logger` 펌웨어를 업로드한 뒤 Serial 포트를 확인합니다.
+
+```powershell
+python -m serial.tools.list_ports -v
+```
+
+예를 들어 `COM11`이면 10초 샘플 수집:
+
+```powershell
+python scripts/capture_csi_serial.py --port COM11 --seconds 10 --label live_sample --echo
+```
+
+발표용 최소 데이터셋은 다음처럼 수집합니다.
+
+```powershell
+.\scripts\capture_csi_dataset.ps1 -Port COM11 -Seconds 30
+```
+
+수집 후 MATLAB 실제 로그 분석:
+
+```matlab
+run("matlab/examples/run_real_csi_log_demo.m");
+```
+
+## 공개 CSI 데이터셋 subset 데모
+실제 수집 데이터가 약하거나 추가 비교 자료가 필요하면 HomeHAR 공개 ESP32 CSI 데이터셋의 작은 subset을 받을 수 있습니다.
+
+```powershell
+python scripts/download_public_csi_subset.py --rows 800
+```
+
+MATLAB 분석:
+
+```matlab
+run("matlab/examples/run_public_homehar_demo.m");
+```
+
+이 데이터는 외부 공개 데이터셋이므로 “우리 장비로 수집한 데이터”라고 주장하지 말고, 기존 연구 데이터 기반 파이프라인 검증용으로만 설명합니다.
+
 ## Python 카메라/Mock 데모 실행법
 Windows PowerShell 예시:
 
@@ -106,4 +146,3 @@ Raspberry Pi에서는 `opencv-python` 설치가 환경에 따라 무거울 수 �
 - camera pose 결과를 이용한 CSI label 자동 생성
 - 환경별 threshold calibration
 - Obsidian/API/외부 LLM 연동은 캡스톤 본 구현과 분리된 확장 서버 설계로 검토
-

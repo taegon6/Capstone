@@ -1,0 +1,5 @@
+label,file,packets,subcarriers,mean_abs_z,mean_variance,mean_diff_energy,median_dominant_frequency,moving_windows,total_windows
+empty,C:\Users\User\Documents\New project\data\public\homehar_subset\homehar_empty_800rows.csv,800,64,0.691877587120844,0.762980374912818,0.138162545766473,1,1,9
+smoke,C:\Users\User\Documents\New project\data\public\homehar_subset\homehar_smoke_800rows.csv,800,64,0.645552950217261,0.512911704953764,0.0154743286233293,1,2,9
+watch,C:\Users\User\Documents\New project\data\public\homehar_subset\homehar_watch_800rows.csv,800,64,0.747678143235691,0.204026497681758,0.00859746248911791,1,1,9
+work,C:\Users\User\Documents\New project\data\public\homehar_subset\homehar_work_800rows.csv,800,64,0.488609005875987,0.688850813266836,0.0218756103980166,1,2,9

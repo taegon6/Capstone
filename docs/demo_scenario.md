@@ -17,3 +17,9 @@
 3. `dashboard_app.py`에서 최신 통합 상태 표시
 4. CSI 결과와 카메라 결과가 같은 상황을 어떻게 보완적으로 설명하는지 발표
 
+## 보강 데모: 실제 ESP32 + 공개 데이터셋
+1. `capture_csi_dataset.ps1`로 empty/static/moving 실제 로그를 수집한다.
+2. `run_real_csi_dataset_comparison.m`으로 실제 데이터의 heatmap과 feature 요약을 보여준다.
+3. `download_public_csi_subset.py`로 HomeHAR 공개 ESP32 CSI subset을 다운로드한다.
+4. `run_public_homehar_demo.m`으로 외부 데이터셋에도 파서/전처리/feature 추출이 적용됨을 보여준다.
+5. 공개 데이터는 검증용 reference이며, 본 프로젝트 장비로 수집한 데이터라고 설명하지 않는다.

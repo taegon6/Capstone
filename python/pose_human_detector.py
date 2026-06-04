@@ -50,6 +50,7 @@ class PoseHumanDetector:
         self.mock_mode = mock_mode
         self._mp_pose = None
         self._pose = None
+        self._last_pose_landmarks = None
 
         if not mock_mode:
             try:
@@ -67,6 +68,7 @@ class PoseHumanDetector:
                 self.mock_mode = True
 
     def detect_landmarks(self, frame: Optional[Any] = None) -> Tuple[List[Landmark], HumanDetectionResult]:
+        self._last_pose_landmarks = None
         if self.mock_mode or frame is None:
             landmarks = mock_landmarks("standing")
             return landmarks, evaluate_human_from_landmarks(
@@ -81,6 +83,7 @@ class PoseHumanDetector:
             detection = evaluate_human_from_landmarks([], self.min_valid_keypoints, self.min_avg_confidence)
             return [], detection
 
+        self._last_pose_landmarks = results.pose_landmarks
         landmarks = coerce_landmarks(results.pose_landmarks.landmark)
         detection = evaluate_human_from_landmarks(
             landmarks, self.min_valid_keypoints, self.min_avg_confidence
@@ -88,13 +91,19 @@ class PoseHumanDetector:
         return landmarks, detection
 
     def draw(self, frame: Any, landmarks: List[Landmark]) -> Any:
-        if self.mock_mode or self._mp_pose is None:
+        if self.mock_mode or self._mp_pose is None or self._last_pose_landmarks is None:
             return frame
         try:
             import mediapipe as mp
 
-            # Drawing is handled in webcam_demo using MediaPipe result when available.
+            drawing = mp.solutions.drawing_utils
+            styles = mp.solutions.drawing_styles
+            drawing.draw_landmarks(
+                frame,
+                self._last_pose_landmarks,
+                self._mp_pose.POSE_CONNECTIONS,
+                landmark_drawing_spec=styles.get_default_pose_landmarks_style(),
+            )
             return frame
         except Exception:
             return frame
-

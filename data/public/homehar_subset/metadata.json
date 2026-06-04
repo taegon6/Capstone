@@ -1,0 +1,37 @@
+{
+  "downloaded_at": "2026-06-04T10:16:37",
+  "source": "gadgadgad/HomeHAR",
+  "source_url": "https://huggingface.co/datasets/gadgadgad/HomeHAR",
+  "license": "CC BY 4.0",
+  "rows_per_label": 800,
+  "records": [
+    {
+      "label": "empty",
+      "remote_path": "data3/empty_1.csv",
+      "url": "https://huggingface.co/datasets/gadgadgad/HomeHAR/resolve/main/data3/empty_1.csv",
+      "local_path": "data\\public\\homehar_subset\\homehar_empty_800rows.csv",
+      "rows": 800
+    },
+    {
+      "label": "watch",
+      "remote_path": "data3/watch_1.csv",
+      "url": "https://huggingface.co/datasets/gadgadgad/HomeHAR/resolve/main/data3/watch_1.csv",
+      "local_path": "data\\public\\homehar_subset\\homehar_watch_800rows.csv",
+      "rows": 800
+    },
+    {
+      "label": "work",
+      "remote_path": "data3/work_1.csv",
+      "url": "https://huggingface.co/datasets/gadgadgad/HomeHAR/resolve/main/data3/work_1.csv",
+      "local_path": "data\\public\\homehar_subset\\homehar_work_800rows.csv",
+      "rows": 800
+    },
+    {
+      "label": "smoke",
+      "remote_path": "data3/smoke_1.csv",
+      "url": "https://huggingface.co/datasets/gadgadgad/HomeHAR/resolve/main/data3/smoke_1.csv",
+      "local_path": "data\\public\\homehar_subset\\homehar_smoke_800rows.csv",
+      "rows": 800
+    }
+  ]
+}

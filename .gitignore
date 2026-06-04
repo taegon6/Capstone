@@ -1,6 +1,7 @@
 # Python
 __pycache__/
 .pytest_cache/
+pytest-cache-files-*/
 *.py[cod]
 .venv/
 
@@ -8,9 +9,15 @@ __pycache__/
 *.asv
 *.m~
 
+# PlatformIO / firmware build output
+.pio/
+**/.pio/
+
+# Locally downloaded drivers and installers
+tools/drivers/
+
 # OS/editor
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-

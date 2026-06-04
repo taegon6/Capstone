@@ -11,6 +11,8 @@ pose:
   mock_mode: true
 
 api:
-  host: "127.0.0.1"
+  # Use 0.0.0.0 when an Android phone on the same Wi-Fi should connect.
+  host: "0.0.0.0"
   port: 8000
-
+  cors_origins:
+    - "*"

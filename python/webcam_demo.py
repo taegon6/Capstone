@@ -28,6 +28,7 @@ def main() -> None:
         if not ok:
             break
         landmarks, human = detector.detect_landmarks(frame)
+        frame = detector.draw(frame, landmarks)
         posture = classifier.classify(landmarks, previous_center=previous_center)
         previous_center = (
             posture.details.get("center_x", 0.0),
@@ -48,4 +49,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

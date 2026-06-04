@@ -12,9 +12,15 @@
 8. 성능 평가 방법
 9. 한계 및 향후 연구
 
+## 부록 후보
+- ESP32-S3 CSI logger 펌웨어 구조
+- 실제 수집 로그 예시
+- HomeHAR 공개 데이터셋 subset 분석 결과
+- Python pose/API/dashboard 실행 화면
+- 전체 검증 명령 및 테스트 결과
+
 ## 성능 평가 예시
 - presence detection: 사람 없음/있음 구간별 정확도
 - motion detection: 정지/움직임 구간별 정확도
 - activity classification: confusion matrix
 - pose 보조 모듈: human 판별 threshold 통과율과 posture rule 사례 분석
-

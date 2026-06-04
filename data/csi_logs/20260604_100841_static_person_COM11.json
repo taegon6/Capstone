@@ -1,0 +1,17 @@
+{
+  "label": "static_person",
+  "port": "COM11",
+  "baud": 921600,
+  "seconds": 30.0,
+  "started_at": "2026-06-04T10:08:41",
+  "finished_at": "2026-06-04T10:09:11",
+  "first_csi_at": "2026-06-04T10:08:43",
+  "log_path": "data\\csi_logs\\20260604_100841_static_person_COM11.log",
+  "csi_count": 195,
+  "csi_len_histogram": {
+    "128": 195
+  },
+  "status_count": 15,
+  "other_count": 6,
+  "valid_for_analysis": true
+}

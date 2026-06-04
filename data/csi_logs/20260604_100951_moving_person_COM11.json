@@ -1,0 +1,17 @@
+{
+  "label": "moving_person",
+  "port": "COM11",
+  "baud": 921600,
+  "seconds": 30.0,
+  "started_at": "2026-06-04T10:09:51",
+  "finished_at": "2026-06-04T10:10:21",
+  "first_csi_at": "2026-06-04T10:09:53",
+  "log_path": "data\\csi_logs\\20260604_100951_moving_person_COM11.log",
+  "csi_count": 299,
+  "csi_len_histogram": {
+    "128": 299
+  },
+  "status_count": 13,
+  "other_count": 8,
+  "valid_for_analysis": true
+}
