@@ -19,7 +19,7 @@ targetSubcarriers = modelInfo.targetSubcarriers;
 sp = serialport(port, opts.baudrate, 'Timeout', 0.5);
 configureTerminator(sp, "LF");
 flush(sp);
-cleanup = onCleanup(@() clear sp); %#ok<NASGU>
+cleanup = onCleanup(@() delete(sp)); %#ok<NASGU>
 
 buffer = complex(zeros(0, targetSubcarriers));
 lastPredictionAt = 0;
@@ -32,10 +32,25 @@ fprintf('classes=%s\n', strjoin(string(categories(modelInfo.labels)), ', '));
 fprintf('Press Ctrl+C to stop.\n\n');
 
 while toc(startTime) < opts.maxSeconds
-    line = readline(sp);
-    if ~startsWith(strtrim(line), "CSI_DATA")
-        if startsWith(strtrim(line), "CSI_STATUS")
-            fprintf('%s\n', strtrim(line));
+    if sp.NumBytesAvailable == 0
+        pause(0.02);
+        continue;
+    end
+    try
+        line = string(readline(sp));
+    catch
+        continue;
+    end
+    line = strtrim(line);
+    if isempty(line) || any(ismissing(line))
+        continue;
+    end
+    if strlength(line) == 0
+        continue;
+    end
+    if ~startsWith(line, "CSI_DATA")
+        if startsWith(line, "CSI_STATUS")
+            fprintf('%s\n', line);
         end
         continue;
     end
@@ -57,7 +72,7 @@ while toc(startTime) < opts.maxSeconds
         lastPredictionAt = numCsi;
         window = buffer(end-opts.windowPackets+1:end, :);
         label = predictWindow(model, modelInfo, window);
-        diffEnergy = mean(abs(diff(abs(window), 1, 1)).^2, 'all');
+        diffEnergy = mean(abs(diff(abs(window), 1, 1)).^2, 'all', 'omitnan');
         fprintf('[%6.1fs] packets=%d prediction=%s diff_energy=%.4f\n', ...
             toc(startTime), numCsi, string(label), diffEnergy);
     end
@@ -83,4 +98,3 @@ featureTable = array2table(features(1, :), ...
     'VariableNames', matlab.lang.makeValidName(modelInfo.featureNames));
 label = predictCsiActivityModel(model, featureTable);
 end
-
