@@ -82,6 +82,21 @@ run("matlab/examples/run_public_homehar_demo.m");
 
 이 데이터는 외부 공개 데이터셋이므로 “우리 장비로 수집한 데이터”라고 주장하지 말고, 기존 연구 데이터 기반 파이프라인 검증용으로만 설명합니다.
 
+MATLAB AI 분류 데모:
+
+```matlab
+run("matlab/examples/run_public_homehar_activity_ai_demo.m");
+run("matlab/examples/run_phone_motion_ai_demo.m");
+```
+
+첫 번째는 HomeHAR 공개 데이터 subset의 activity label을 window feature로 학습/평가하고, 두 번째는 직접 수집한 `empty/static_person/moving_person` phone-connected 로그를 MATLAB 분류기로 학습/평가합니다.
+
+현재 검증된 예시 결과:
+- HomeHAR subset 4-class activity classifier: 약 75% accuracy
+- 직접 수집한 phone-connected 3-class motion classifier: 약 68% accuracy
+
+두 결과는 작은 데모 데이터 기준이므로 최종 성능 지표가 아니라 MATLAB AI 분류 파이프라인 검증 결과로 설명합니다.
+
 ## Python 카메라/Mock 데모 실행법
 Windows PowerShell 예시:
 

@@ -42,9 +42,26 @@ Analyze it:
 run("matlab/examples/run_public_homehar_demo.m");
 ```
 
+Run MATLAB activity classification:
+
+```matlab
+run("matlab/examples/run_public_homehar_activity_ai_demo.m");
+run("matlab/examples/run_phone_motion_ai_demo.m");
+```
+
 Outputs:
 - `data/results/public_homehar_summary.csv`
 - `data/results/public_homehar_summary.png`
+- `data/results/public_homehar_activity_ai_summary.csv`
+- `data/results/public_homehar_activity_ai_confusion.png`
+- `data/results/phone_motion_ai_summary.csv`
+- `data/results/phone_motion_ai_confusion.png`
+
+Current verified results:
+- HomeHAR subset activity classifier: `fitcecoc`, accuracy about `75%` on 4 classes and 80 windows.
+- Phone-connected ESP32 motion classifier: `fitcecoc`, accuracy about `68%` on 3 classes and 55 windows.
+
+These are small demo-set results. Present them as proof that the MATLAB AI pipeline runs end-to-end, not as final benchmark accuracy.
 
 Explain this as external validation only. Do not claim the public dataset was collected with this project's ESP32-S3 hardware.
 
@@ -90,4 +107,3 @@ python dashboard_app.py
 ```
 
 Use `-SkipMatlab` when MATLAB is not available.
-

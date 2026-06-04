@@ -16,6 +16,7 @@
 - ESP32-S3 CSI logger 펌웨어 구조
 - 실제 수집 로그 예시
 - HomeHAR 공개 데이터셋 subset 분석 결과
+- MATLAB CSI activity classifier 결과 및 confusion matrix
 - Python pose/API/dashboard 실행 화면
 - 전체 검증 명령 및 테스트 결과
 
