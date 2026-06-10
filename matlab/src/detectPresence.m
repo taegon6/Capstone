@@ -1,7 +1,6 @@
 function result = detectPresence(amp, baselineIdx, currentIdx, opts)
 %DETECTPRESENCE Threshold presence by variance/energy shift from baseline.
-% 사람이 없는 앞 구간을 baseline으로 보고, 현재 구간의 CSI 변화량이 얼마나 달라졌는지 비교한다.
-% 캡스톤 데모에서는 절대값보다 "기준 대비 변화"를 보는 방식이 환경 변화에 조금 더 안정적이다.
+% 앞쪽 baseline 구간과 현재 구간의 CSI 변화량을 비교한다.
 arguments
     amp {mustBeNumeric}
     baselineIdx = []
@@ -19,13 +18,13 @@ end
 
 base = amp(baselineIdx, :);
 curr = amp(currentIdx, :);
-% variance는 움직임/반사 변화에 민감하고, energy는 전체 amplitude 크기 변화를 보조로 본다.
+% variance를 주로 보고 energy는 보조로 사용
 baseScore = mean(var(base, 0, 1, 'omitnan')) + mean(base(:).^2, 'omitnan') * 0.01;
 currScore = mean(var(curr, 0, 1, 'omitnan')) + mean(curr(:).^2, 'omitnan') * 0.01;
 delta = currScore - baseScore;
 
 if isempty(opts.threshold) || opts.autoThreshold
-    % baseline의 흔들림 정도를 기준으로 자동 threshold를 잡는다.
+    % baseline 흔들림 기준으로 threshold 설정
     threshold = max(0.05, 2.5 * std(mean(base, 2, 'omitnan')));
 else
     threshold = opts.threshold;

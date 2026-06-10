@@ -1,7 +1,7 @@
 function [features, featureNames, windowTimes] = extractCsiFeatures(amp, fs, opts)
 %EXTRACTCSIFEATURES Extract sliding-window CSI amplitude features.
-% CSI는 packet 단위 값이므로 일정 시간 window로 잘라서 통계 특징을 만든다.
-% 여기서 만든 feature들이 presence, motion, activity, emergency demo의 공통 입력이 된다.
+% CSI amplitude를 window 단위로 잘라서 통계 feature를 만든다.
+% 분류 모델은 이 feature matrix를 입력으로 사용한다.
 arguments
     amp {mustBeNumeric}
     fs (1,1) double = 50
@@ -24,9 +24,9 @@ for k = 1:numel(starts)
     x = amp(idx, :);
     flat = x(:);
     d = diff(x, 1, 1);
-    % dominant frequency는 window 안에서 반복적인 움직임 성분이 있는지 보는 용도다.
+    % window 안의 주파수 성분 확인
     [domFreq, specEnergy] = dominantSpectrumFeature(mean(x, 2), fs);
-    % PCA 1번 성분은 여러 subcarrier 변화를 하나의 대표 신호로 요약한다.
+    % subcarrier가 많아서 PCA 1번 성분도 feature로 사용
     pca1 = firstPrincipalComponent(x);
     features(k, :) = [mean(flat), std(flat), var(flat), mean(flat.^2), ...
         max(flat), min(flat), range(flat), mean(d(:).^2), domFreq, ...
@@ -36,7 +36,7 @@ end
 end
 
 function [domFreq, specEnergy] = dominantSpectrumFeature(x, fs)
-% window 평균 amplitude의 FFT를 계산해서 가장 강한 주파수 성분을 찾는다.
+% 평균 amplitude의 FFT peak를 찾는다.
 x = x(:) - mean(x, 'omitnan');
 if numel(x) < 4 || all(abs(x) < eps)
     domFreq = 0;
@@ -55,7 +55,7 @@ end
 end
 
 function pc1 = firstPrincipalComponent(x)
-% pca 함수가 있으면 사용하고, 없으면 SVD로 같은 역할을 하도록 대체했다.
+% pca가 안 되는 환경이면 SVD로 비슷하게 처리
 x = x - mean(x, 1, 'omitnan');
 x(~isfinite(x)) = 0;
 if size(x, 2) == 1

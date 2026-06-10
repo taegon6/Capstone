@@ -1,7 +1,7 @@
 function result = detectMotion(amp, fs, opts)
 %DETECTMOTION Classify windows as static or moving.
-% 움직임은 연속 packet 사이의 변화량이 커지는 특징이 있다.
-% 따라서 diff_energy를 중심으로 보고, variance를 조금 섞어 window별 static/moving을 판단한다.
+% 움직임이 있으면 packet 사이 변화량(diff_energy)이 커진다.
+% window마다 static/moving을 간단히 나눈다.
 arguments
     amp {mustBeNumeric}
     fs (1,1) double = 50
@@ -16,7 +16,7 @@ varIdx = find(strcmp(names, 'variance'));
 score = features(:, diffIdx) + 0.2 * features(:, varIdx);
 
 if isempty(opts.threshold)
-    % 데이터마다 scale이 다르므로 median + MAD 방식으로 threshold를 자동 추정한다.
+    % 데이터 scale이 달라서 median + MAD로 자동 threshold를 잡음
     threshold = median(score) + 1.5 * mad(score, 1);
 else
     threshold = opts.threshold;

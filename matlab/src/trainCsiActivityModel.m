@@ -1,7 +1,7 @@
 function model = trainCsiActivityModel(featureTable, featureNames, opts)
 %TRAINCSIACTIVITYMODEL Train a CSI activity classifier with robust fallback.
-% feature table을 받아 MATLAB 기본 분류기로 activity/emergency 모델을 학습한다.
-% Deep Learning Toolbox 없이도 돌아가야 해서 fitcecoc -> fitctree -> nearest centroid 순서로 대체한다.
+% feature table로 activity/emergency 분류 모델을 학습한다.
+% fitcecoc을 먼저 쓰고, 안 되면 더 단순한 모델로 넘어간다.
 arguments
     featureTable table
     featureNames
@@ -16,7 +16,7 @@ featureVars = matlab.lang.makeValidName(string(featureNames));
 X = table2array(featureTable(:, featureVars));
 Y = featureTable.label;
 
-% class 비율이 크게 깨지지 않도록 class별로 train/test를 나눈다.
+% class별로 train/test를 나눔
 [trainIdx, testIdx] = stratifiedHoldout(Y, opts.holdoutRatio);
 XTrain = X(trainIdx, :);
 YTrain = Y(trainIdx);
@@ -27,7 +27,7 @@ YTest = Y(testIdx);
 XTrainZ = applyNormalize(XTrain, mu, sigma);
 XTestZ = applyNormalize(XTest, mu, sigma);
 
-% 우선 다중 class에 적합한 ECOC SVM 계열 분류기를 사용한다.
+% 우선 ECOC 분류기 사용
 methodUsed = string(opts.method);
 classifier = [];
 try
@@ -44,11 +44,11 @@ end
 
 if isempty(classifier)
     try
-        % fitcecoc이 안 되는 환경이면 decision tree로 대체한다.
+        % 안 되면 decision tree
         classifier = fitctree(XTrainZ, YTrain);
         methodUsed = "fitctree";
     catch
-        % 마지막 fallback은 각 class 평균과의 거리로 분류한다.
+        % 마지막은 class 평균과의 거리로 분류
         classifier = trainNearestCentroid(XTrainZ, YTrain);
         methodUsed = "nearest_centroid";
     end
@@ -69,7 +69,7 @@ if opts.showChart
 end
 
 model = struct();
-% 학습에 사용한 normalization 값까지 저장해야 실시간 추론에서도 같은 scale로 예측할 수 있다.
+% 실시간 예측에서도 같은 normalize 값을 쓰려고 같이 저장
 model.classifier = classifier;
 model.method = methodUsed;
 model.featureNames = string(featureNames);
