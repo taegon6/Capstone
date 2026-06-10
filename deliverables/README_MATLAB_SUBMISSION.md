@@ -1,11 +1,11 @@
-# MATLAB 간단 제출 코드 설명
+# MATLAB 제출 코드 설명
 
-PPT는 별도로 준비하고, 조교 확인용 MATLAB 코드는 `matlab_simple` 폴더만 보면 됩니다.
+PPT는 별도로 준비하고, 조교 확인용 MATLAB 코드는 `matlab_submission` 폴더를 보면 됩니다.
 
 ## 실행 파일
 
 ```text
-matlab_simple/run_csi_capstone_demo.m
+matlab_submission/run_csi_capstone_demo.m
 ```
 
 ## 실행 방법
@@ -13,8 +13,8 @@ matlab_simple/run_csi_capstone_demo.m
 MATLAB에서 프로젝트 루트로 이동한 뒤:
 
 ```matlab
-addpath(genpath('matlab_simple'));
-run('matlab_simple/run_csi_capstone_demo.m');
+addpath(genpath('matlab_submission'));
+run('matlab_submission/run_csi_capstone_demo.m');
 ```
 
 ## 코드 흐름
@@ -33,20 +33,19 @@ run('matlab_simple/run_csi_capstone_demo.m');
 ## 포함 파일
 
 ```text
-matlab_simple/
+matlab_submission/
   README.md
   run_csi_capstone_demo.m
   load_or_mock_csi.m
-  extract_simple_csi_features.m
-  realtime_csi_demo_simple.m
+  extract_csi_features.m
+  realtime_csi_demo.m
 
-simple_results/
-  simple_csi_demo_result.png
-  simple_csi_features.csv
+matlab_results/
+  csi_demo_result.png
+  csi_features.csv
 ```
 
 ## 주의
 
 `fall_candidate`는 실제 환자 낙상 데이터가 아니라 mock 데이터입니다.  
 발표에서는 "정확한 낙상 진단"이 아니라 "낙상 의심 이벤트 후보 감지"라고 설명합니다.
-

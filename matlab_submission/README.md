@@ -1,7 +1,7 @@
-# MATLAB Simple Submission Code
+# MATLAB Submission Code
 
-이 폴더는 조교/교수님 확인용으로 줄인 MATLAB 코드입니다.  
-원래 프로젝트에는 여러 실험 파일이 있지만, 제출용으로는 핵심 흐름만 남겼습니다.
+이 폴더는 조교/교수님 확인용 MATLAB 코드입니다.  
+프로젝트 설명에 필요한 CSI 수집, feature 추출, AI 분류 흐름을 담았습니다.
 
 ## 파일 구성
 
@@ -15,13 +15,13 @@ load_or_mock_csi.m
   raw integer -> complex CSI 변환
   로그가 없을 때 mock CSI 생성
 
-extract_simple_csi_features.m
+extract_csi_features.m
   amplitude 계산
   smoothing / normalization
   window feature 추출
 
-realtime_csi_demo_simple.m
-  ESP32 serial port에서 CSI를 읽는 간단한 실시간 확인용 코드
+realtime_csi_demo.m
+  ESP32 serial port에서 CSI를 읽는 실시간 확인용 코드
 ```
 
 ## 실행 방법
@@ -29,15 +29,15 @@ realtime_csi_demo_simple.m
 MATLAB에서 프로젝트 루트로 이동한 뒤:
 
 ```matlab
-addpath(genpath('matlab_simple'));
-run('matlab_simple/run_csi_capstone_demo.m');
+addpath(genpath('matlab_submission'));
+run('matlab_submission/run_csi_capstone_demo.m');
 ```
 
 ESP32가 연결되어 있을 때만:
 
 ```matlab
-addpath(genpath('matlab_simple'));
-realtime_csi_demo_simple("COM11");
+addpath(genpath('matlab_submission'));
+realtime_csi_demo("COM11");
 ```
 
 COM 포트가 다르면 `"COM11"` 부분만 바꾸면 됩니다.
@@ -46,4 +46,3 @@ COM 포트가 다르면 `"COM11"` 부분만 바꾸면 됩니다.
 
 이 코드는 낙상을 정확히 진단하는 코드가 아닙니다.  
 CSI 변화 패턴을 이용해서 `normal` / `fall_candidate`를 구분하는 캡스톤 데모입니다.
-

@@ -3,7 +3,7 @@ clear; clc; close all;
 % 실제 ESP32 로그가 있으면 사용하고, 없으면 mock 데이터로 실행된다.
 
 projectRoot = fileparts(fileparts(mfilename('fullpath')));
-addpath(genpath(fullfile(projectRoot, 'matlab_simple')));
+addpath(genpath(fullfile(projectRoot, 'matlab_submission')));
 
 fs = 50;  % CSI packet rate는 데모용으로 50 Hz로 가정
 data = load_or_mock_csi(projectRoot);
@@ -11,7 +11,7 @@ data = load_or_mock_csi(projectRoot);
 allFeatures = table();
 debugData = struct();
 for i = 1:numel(data)
-    [T, featureNames, debug] = extract_simple_csi_features(data(i).csi, data(i).label, fs);
+    [T, featureNames, debug] = extract_csi_features(data(i).csi, data(i).label, fs);
     allFeatures = [allFeatures; T]; %#ok<AGROW>
     debugData(i).label = data(i).label; %#ok<SAGROW>
     debugData(i).debug = debug;
@@ -25,7 +25,7 @@ allFeatures.aiLabel = categorical(allFeatures.aiLabel);
 X = table2array(allFeatures(:, featureNames));
 Y = allFeatures.aiLabel;
 
-% 간단한 머신러닝 모델. 복잡한 딥러닝 대신 decision tree를 사용했다.
+% 머신러닝 모델은 decision tree를 사용했다.
 rng(7);
 cv = cvpartition(Y, 'HoldOut', 0.3);
 XTrain = X(training(cv), :);
@@ -37,13 +37,13 @@ model = fitctree(XTrain, YTrain);
 YPred = predict(model, XTest);
 accuracy = mean(YPred == YTest);
 
-fprintf('\n=== CSI Capstone Simple Demo ===\n');
+fprintf('\n=== CSI Capstone Demo ===\n');
 fprintf('Total windows: %d\n', height(allFeatures));
 fprintf('AI model: decision tree\n');
 fprintf('Test accuracy: %.1f %%\n', accuracy * 100);
 fprintf('Note: fall_candidate is mock data, not medical diagnosis.\n\n');
 
-figure('Name', 'CSI Capstone Simple Demo', 'Color', 'w', 'Position', [100 100 1200 720]);
+figure('Name', 'CSI Capstone Demo', 'Color', 'w', 'Position', [100 100 1200 720]);
 tiledlayout(2, 2, 'TileSpacing', 'compact');
 
 nexttile;
@@ -88,11 +88,11 @@ title('Mean diff energy by label');
 ylabel('Diff energy');
 grid on;
 
-outDir = fullfile(projectRoot, 'deliverables', 'simple_results');
+outDir = fullfile(projectRoot, 'deliverables', 'matlab_results');
 if ~exist(outDir, 'dir')
     mkdir(outDir);
 end
-writetable(allFeatures, fullfile(outDir, 'simple_csi_features.csv'));
-exportgraphics(gcf, fullfile(outDir, 'simple_csi_demo_result.png'), 'Resolution', 180);
+writetable(allFeatures, fullfile(outDir, 'csi_features.csv'));
+exportgraphics(gcf, fullfile(outDir, 'csi_demo_result.png'), 'Resolution', 180);
 
-fprintf('Saved result figure: %s\n', fullfile(outDir, 'simple_csi_demo_result.png'));
+fprintf('Saved result figure: %s\n', fullfile(outDir, 'csi_demo_result.png'));

@@ -1,6 +1,6 @@
-function realtime_csi_demo_simple(port)
-% ESP32가 연결되어 있을 때 CSI가 들어오는지 간단히 확인하는 코드
-% 예: realtime_csi_demo_simple("COM11")
+function realtime_csi_demo(port)
+% ESP32가 연결되어 있을 때 CSI가 들어오는지 확인하는 코드
+% 예: realtime_csi_demo("COM11")
 
 if nargin < 1
     port = "COM11";
@@ -17,7 +17,7 @@ fprintf('Stop with Ctrl+C.\n');
 count = 0;
 ampHistory = [];
 
-figure('Name', 'Simple realtime CSI check', 'Color', 'w');
+figure('Name', 'Realtime CSI check', 'Color', 'w');
 while ishandle(gcf)
     line = readline(sp);
     raw = parseLine(line);
@@ -65,4 +65,3 @@ imagPart = raw(1:2:end);
 realPart = raw(2:2:end);
 csi = complex(realPart, imagPart);
 end
-

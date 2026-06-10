@@ -1,5 +1,5 @@
-function [featureTable, featureNames, debug] = extract_simple_csi_features(csiMatrix, label, fs)
-% CSI matrix에서 간단한 window feature를 뽑는다.
+function [featureTable, featureNames, debug] = extract_csi_features(csiMatrix, label, fs)
+% CSI matrix에서 window feature를 뽑는다.
 % feature는 mean, variance, diff energy, range 정도만 사용했다.
 
 if nargin < 3
@@ -28,7 +28,7 @@ for k = 1:numel(starts)
     x = ampZ(idx, :);
     d = diff(x, 1, 1);
     flat = x(:);
-    pca1 = simplePca1(x);
+    pca1 = pca1_signal(x);
 
     X(k, :) = [
         mean(abs(flat))
@@ -49,7 +49,7 @@ debug.amplitudeZ = ampZ;
 debug.windowStart = starts(:) / fs;
 end
 
-function pc1 = simplePca1(x)
+function pc1 = pca1_signal(x)
 x = x - mean(x, 1);
 x(~isfinite(x)) = 0;
 if size(x, 2) < 2
@@ -59,4 +59,3 @@ end
 [~, ~, v] = svd(x, 'econ');
 pc1 = x * v(:, 1);
 end
-
